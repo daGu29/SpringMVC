@@ -5,7 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Properties;
 
 /**
@@ -18,32 +20,28 @@ public class PropertiesUtil {
     private static Properties props;
 
     static {
-        String fileName = "mmall.properties";
+        String filename = "mmall.properties";
         props = new Properties();
         try {
-            props.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName),"UTF-8"));
+            props.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(filename)));
         } catch (IOException e) {
-            logger.error("配置文件读取异常",e);
+            logger.error("加载配置文件一次", e);
         }
     }
 
-    public static String getProperty(String key){
+    public static String getProperty(String key) {
         String value = props.getProperty(key.trim());
-        if(StringUtils.isBlank(value)){
-            return null;
+        if (StringUtils.isNotBlank(value)) {
+            return value.trim();
         }
-        return value.trim();
+        return null;
     }
 
-    public static String getProperty(String key,String defaultValue){
-
+    public static String getProperty(String key, String defaultValue) {
         String value = props.getProperty(key.trim());
-        if(StringUtils.isBlank(value)){
-            value = defaultValue;
+        if (StringUtils.isNotBlank(value)) {
+            return value.trim();
         }
-        return value.trim();
+        return defaultValue;
     }
-
-
-
 }

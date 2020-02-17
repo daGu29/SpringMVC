@@ -1,6 +1,5 @@
 package com.mx.learn.service.impl;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mx.learn.common.ServerResponse;
 import com.mx.learn.dao.CategoryMapper;
@@ -12,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
